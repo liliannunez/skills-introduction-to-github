@@ -126,6 +126,138 @@ ff55ece  Initial commit
 
 ---
 
+## Software Development Principles (Living Guide)
+
+These principles govern how all software in this repository is built. They exist to make code understandable, maintainable, and safe to change — whether written by a human or AI. Claude Code must follow these in every task.
+
+---
+
+### 1. Git Workflow — How Work Flows Safely
+
+**The rule:** `main` is always stable. All work happens on branches.
+
+```
+main          ← always deployable, protected
+  └── feature/add-login     ← one branch per feature or fix
+  └── fix/broken-header     ← merged via pull request, then deleted
+```
+
+**Conventions:**
+- Branch names: `feature/`, `fix/`, `docs/`, `refactor/` prefixes
+- Commit messages: imperative mood, short, describe *what and why* — e.g. `Add user login form` not `stuff`
+- One logical change per commit — don't bundle unrelated things
+- Pull requests are for review, not just merging — always write a clear description
+
+**Why this matters for leaders:** A messy git history means you can't trace when or why something broke. A clean history is your audit trail.
+
+---
+
+### 2. Code Quality — What Good Code Looks Like
+
+**The rule:** Code is read far more than it is written. Optimize for the next reader.
+
+**Conventions:**
+- Names should reveal intent — `getUserById()` not `getData()`
+- Functions do one thing — if you need "and" to describe it, split it
+- No magic numbers — `const MAX_RETRIES = 3` not just `3`
+- Delete dead code — don't comment it out, that's what git is for
+- Keep files short and focused — if a file is doing too much, it probably is
+
+**The smell test:** If you have to explain what a piece of code does, it should be rewritten to be self-explanatory.
+
+**Why this matters for leaders:** Unreadable code slows every future hire. Readable code is a gift to your team's future selves.
+
+---
+
+### 3. Testing — Your Safety Net
+
+**The rule:** Untested code is not done. Tests are what let you change code without fear.
+
+**Types you need to know:**
+- **Unit tests** — test one function in isolation, fast, no network/DB
+- **Integration tests** — test that two components work together
+- **End-to-end (E2E) tests** — simulate a real user journey
+
+**Conventions:**
+- Write tests alongside code, not after
+- Test behaviour, not implementation — test what it does, not how
+- A test that always passes is worthless; make sure it can fail
+- Aim for tests that run in seconds, not minutes
+
+**Why this matters for leaders:** Teams without tests move fast and break things. Teams with good tests move fast and stay confident.
+
+---
+
+### 4. CI/CD — Automating Quality Gates
+
+**The rule:** Computers should enforce standards, not humans. Automate everything repeatable.
+
+**What a basic pipeline does:**
+```
+push code → run tests → check code style → deploy (if all pass)
+```
+
+**Conventions:**
+- No code merges to `main` unless CI passes
+- Failing CI is a team emergency — fix it before adding new features
+- Keep pipelines fast (under 10 minutes) or developers ignore them
+- Use Dependabot or similar to keep dependencies updated automatically
+
+**Why this matters for leaders:** Manual QA gates become bottlenecks. Automated gates scale with your team.
+
+---
+
+### 5. Working With AI (Claude Code) — Leverage Without Dependency
+
+**The rule:** AI amplifies your intent. Garbage in, garbage out. You are the architect; Claude is the builder.
+
+**How to get the best results:**
+- Be specific about *what* and *why*, not just *what* — context produces better code
+- Always review what Claude produces — read it, question it, own it
+- Use Claude to explain code you don't understand — "explain this line by line"
+- Ask Claude to suggest alternatives — "what are the tradeoffs here?"
+- If something feels wrong, it probably is — ask Claude to defend its choices
+
+**Red flags to watch for in AI-generated code:**
+- Functions that do too many things
+- Missing error handling at system boundaries (user input, API calls)
+- No tests generated alongside features
+- Overly clever solutions that are hard to follow
+
+**CLAUDE.md is your contract with AI:** What's in this file shapes every session. Keep it current.
+
+**Why this matters for leaders:** Teams that review AI output thoughtfully ship better software than those who accept it blindly — and far better than those who avoid it entirely.
+
+---
+
+### 6. Documentation — The Right Amount
+
+**The rule:** Document decisions, not mechanics. Code shows *what*; docs explain *why*.
+
+**Conventions:**
+- `README.md` — how to set up and run the project (audience: new team member)
+- `CLAUDE.md` — AI assistant context and team conventions (audience: Claude + devs)
+- Inline comments — only for non-obvious logic ("why" not "what")
+- Architecture decisions — note significant choices and the tradeoffs considered
+
+**Why this matters for leaders:** Every undocumented decision will be re-litigated by the next person. Good docs prevent that.
+
+---
+
+## Learning Path (for this repo's owner)
+
+Progress through these phases as you build things here:
+
+| Phase | Focus | You'll be able to... |
+|-------|-------|----------------------|
+| **1. Foundation** | Git, branches, PRs, commits | Track and review all changes safely |
+| **2. Code Reading** | Quality principles, naming, structure | Spot red flags in code review |
+| **3. Automation** | GitHub Actions, CI/CD | Set up pipelines that enforce standards |
+| **4. Testing** | Unit/integration basics | Ask the right questions about test coverage |
+| **5. AI Leadership** | Prompting, reviewing, governing AI use | Guide your team's AI workflow wisely |
+
+---
+
 ## Key Constraints for AI Assistants
 
 - **Do not modify `README.md` directly** for course content changes — edit the appropriate `.github/steps/*.md` file instead.
