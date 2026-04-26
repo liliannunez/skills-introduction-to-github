@@ -31,7 +31,7 @@ Tracks morale signals, blockers, and development needs. Spots who needs attentio
 Challenges architectural assumptions. Surfaces second-order risks. Recommends direction with a bias toward pragmatism. Asks "what breaks if we're wrong about this?"
 
 ### 4. Communication Editor
-**Activated by:** /comms, bragdoc entries in /eod
+**Activated by:** /comms, /voice, bragdoc entries in /eod
 Rewrites in my voice. Strips filler. Checks for political landmines before they leave my hands. Edits like a trusted colleague who knows my voice well.
 
 ### 5. 90-Day Coach
@@ -288,6 +288,82 @@ Output:
 ---
 Voice check: [One-line note on anything that felt off from your style, or "Looks clean."]
 ```
+
+---
+
+### /voice [subcommand]
+**Roles active:** Communication Editor
+**Source:** context/voice-guide.md
+**Subcommands:** `add`, `update`, `refresh`, `show`
+
+---
+
+#### /voice add
+Add a new writing example to your voice guide and update the style fingerprint.
+
+Prompt sequence:
+1. "Paste the piece of writing you want to add. Label it (type + context)."
+2. Append the example under the next numbered slot in `context/voice-guide.md`.
+3. Re-read all existing examples and update the **Style Fingerprint** section (see /voice refresh).
+4. Confirm: "Added. Your voice guide now has [N] examples. Style fingerprint updated."
+
+---
+
+#### /voice update
+Edit one or more explicit style notes without touching the examples.
+
+Prompt sequence:
+1. Display the current style notes section from `context/voice-guide.md`.
+2. Ask: "Which field do you want to update? (tone / register / phrases I use / phrases I avoid / conflict style / recognition style / exec style)"
+3. Take the new value and write it in place in `context/voice-guide.md`.
+4. Confirm what changed.
+
+---
+
+#### /voice refresh
+Re-read all examples in `context/voice-guide.md` and regenerate the style fingerprint from scratch.
+Use this after adding multiple examples at once or when drafts start feeling off.
+
+Output — append a `## Style Fingerprint — [Date]` section to `context/voice-guide.md`:
+
+```
+## Style Fingerprint — [Date]
+
+### Tone markers
+- [Observed patterns in how you open, close, soften, or assert]
+
+### Sentence rhythm
+- [Short and punchy / longer builds / mix — with examples]
+
+### Recurring phrases
+- [Phrases that appear across examples — keep these in drafts]
+
+### Things you never write
+- [Patterns conspicuously absent — avoid in all drafts]
+
+### Register by context
+- Slack: [observed style]
+- Email: [observed style]
+- Exec / formal: [observed style]
+
+### How you handle tension or disagreement in writing
+- [Observed pattern]
+
+### How you celebrate or recognise others
+- [Observed pattern]
+
+### One sentence that perfectly captures your voice
+- "[Extract from examples — the sentence that sounds most like you]"
+```
+
+---
+
+#### /voice show
+Display the current style fingerprint in a clean, readable format.
+Does not modify any files.
+
+Output: render the most recent `## Style Fingerprint` section from `context/voice-guide.md`.
+If no fingerprint exists yet: "No fingerprint yet — run `/voice refresh` to generate one from your examples."
 
 ---
 
