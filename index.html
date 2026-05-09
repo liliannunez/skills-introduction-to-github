@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StratEdgic – Lilian Núñez Grance</title>
+  <meta name="description" content="25+ years at the intersection of technology, data, and people. Honest thinking about leadership, data capability, and the decisions that shaped me." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:   #1a1a2e;
+      --mid:    #16213e;
+      --accent: #0f3460;
+      --gold:   #e94560;
+      --text:   #e8e8e8;
+      --muted:  #a0aec0;
+      --card:   rgba(255,255,255,0.05);
+      --border: rgba(255,255,255,0.1);
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(26,26,46,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { font-size: 1.4rem; font-weight: 700; color: var(--gold); text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 85vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, var(--mid) 50%, var(--accent) 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(233,69,96,0.15) 0%, transparent 60%);
+    }
+    .hero-content { position: relative; max-width: 720px; }
+    .hero-logo {
+      width: 120px; height: 120px; border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--gold);
+      margin-bottom: 1.5rem;
+      background: var(--accent);
+    }
+    .hero-emoji { font-size: 5rem; display: block; margin-bottom: 1rem; }
+    .hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 1rem; }
+    .hero h1 span { color: var(--gold); }
+    .hero p { font-size: 1.15rem; color: var(--muted); max-width: 560px; margin: 0 auto 2rem; }
+    .hero-cta {
+      display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    }
+    .btn {
+      padding: .75rem 1.75rem; border-radius: 8px; font-size: 0.95rem;
+      font-weight: 600; text-decoration: none; transition: all .2s; cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: var(--gold); color: #fff; }
+    .btn-primary:hover { background: #c73652; transform: translateY(-2px); }
+    .btn-outline { border: 1px solid var(--border); color: var(--text); background: transparent; }
+    .btn-outline:hover { background: var(--card); transform: translateY(-2px); }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-size: .75rem; font-weight: 700; letter-spacing: .15em;
+      color: var(--gold); text-transform: uppercase; margin-bottom: .5rem;
+    }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; margin-bottom: 1.5rem; }
+    h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .75rem; }
+    p + p { margin-top: 1rem; }
+
+    /* alternating bg */
+    .bg-mid { background: var(--mid); }
+
+    /* ── CALLOUT ── */
+    .callout {
+      background: var(--card);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 12px 12px 0;
+      padding: 1.5rem 1.75rem;
+      margin: 1.5rem 0;
+    }
+    .callout p + p { margin-top: .75rem; }
+    .callout em { color: var(--muted); font-style: italic; }
+
+    /* ── ROLES GRID ── */
+    .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .role-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform .2s, border-color .2s;
+    }
+    .role-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+    .role-icon { font-size: 2rem; margin-bottom: .75rem; }
+    .role-card ul { margin-top: .5rem; padding-left: 1.25rem; }
+    .role-card li { color: var(--muted); font-size: .9rem; margin-bottom: .35rem; }
+
+    /* ── TIMELINE ── */
+    .timeline { border-left: 2px solid var(--border); padding-left: 2rem; margin-top: 2rem; }
+    .timeline-item { position: relative; margin-bottom: 2rem; }
+    .timeline-item::before {
+      content: '';
+      position: absolute; left: -2.4rem; top: .4rem;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--gold);
+    }
+
+    /* ── BLOG GRID ── */
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.25rem; margin-top: 2rem; }
+    .blog-tag {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      font-size: .9rem; color: var(--muted);
+    }
+    .blog-tag::before { content: '✍️ '; }
+
+    /* ── CONNECT ── */
+    .connect-links { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+    .connect-link {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: .65rem 1.25rem;
+      text-decoration: none; color: var(--text); font-size: .9rem;
+      transition: all .2s;
+    }
+    .connect-link:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+    /* ── SCAN CTA ── */
+    .scan-cta {
+      background: linear-gradient(135deg, var(--accent), var(--mid));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .scan-cta h3 { font-size: 1.4rem; margin-bottom: .75rem; }
+    .scan-cta p { color: var(--muted); margin-bottom: 1.5rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--mid);
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: .75rem 1rem; }
+      .nav-links { gap: 1rem; }
+      section { padding: 3.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">🚀 StratEdgic</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#roles">Roles</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#blogs">Blog</a></li>
+    <li><a href="#connect">Connect</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-emoji" aria-hidden="true">🚀</span>
+    <h1>Welcome to <span>StratEdgic</span></h1>
+    <p>25+ years at the intersection of technology, data, and people — honest thinking about leadership, building data capability that sticks, and the decisions that shaped me.</p>
+    <div class="hero-cta">
+      <a href="#about" class="btn btn-primary">Read my story</a>
+      <a href="#connect" class="btn btn-outline">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="bg-mid">
+  <div class="container">
+    <p class="section-label">About Me</p>
+    <h2>Hi, I'm Lilian.</h2>
+    <div class="callout">
+      <p><em>I'm passionate about combining technology, leadership, and human connection to create environments where both people and data can thrive.</em></p>
+      <p><em>My career has taken me from hands-on coding to leading engineering and data teams in complex, fast-moving organisations. Along the way, I've learned that success isn't just about having the right tools — it's about trust, clarity, and the courage to adapt.</em></p>
+      <p><em>StratEdgic is where I share the lessons, experiments, and ideas that have shaped me. Some posts will be practical — covering data governance, team structure, or decision-making. Others will be more reflective — about growth, resilience, and the human side of leadership.</em></p>
+      <p><em>This isn't a "how-to" guide. It's a conversation. And I hope it inspires yours.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- PAST ROLES -->
+<section id="roles">
+  <div class="container">
+    <p class="section-label">Past Roles</p>
+    <h2>What I've done</h2>
+    <p style="color:var(--muted);">I have helped Dutch organisations become truly data-driven.</p>
+    <div class="roles-grid">
+      <div class="role-card">
+        <div class="role-icon">👥</div>
+        <h3>Team Enablement</h3>
+        <ul>
+          <li>Led cross-functional data teams through platform builds, governance frameworks, and cultural change</li>
+          <li>Mentoring &amp; coaching engineers to grow and perform</li>
+          <li>Built engineering career ladders that gave people a path, not just a job</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">🧠</div>
+        <h3>Strategy to Execution</h3>
+        <ul>
+          <li>Guided government organisations, scale-ups and large companies through their first data governance frameworks under GDPR pressure</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">🤖</div>
+        <h3>Automation &amp; Efficiency</h3>
+        <ul>
+          <li>Helping teams streamline with automation, data insights, and better tooling</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:2rem; color:var(--muted); font-style:italic;">The thread: complex environments, real constraints, people at the centre.</p>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="journey" class="bg-mid">
+  <div class="container">
+    <p class="section-label">My Journey</p>
+    <h2>Past Work</h2>
+    <div class="callout">
+      <p>Before shifting my focus to a full-time leadership role, I worked with organisations to help them grow their data capabilities and strengthen their technical leadership.</p>
+      <p>Here you'll find a selection of past projects — not as sales material, but as context for the ideas I share today. These experiences shaped my thinking and continue to influence my writing.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>Cloud Data Platform for Public Health</h3>
+        <p style="color:var(--muted);">Led the design of a cloud-based data platform for public health organisations — modern lake-house architecture, analytics, and data self-service.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>Engineering Culture &amp; Coaching</h3>
+        <p style="color:var(--muted);">Coached engineers and tech leads to build feedback culture and grow into data champions.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>Data Governance at Scale</h3>
+        <p style="color:var(--muted);">Guided a scale-up through its first formal data governance framework, including RBAC and GDPR security models.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>Scalable Data Processes</h3>
+        <p style="color:var(--muted);">Created scalable processes enabling data self-service and led the data track in fast-moving, cross-functional settings.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DATA MATURITY SCAN -->
+<section id="scan">
+  <div class="container">
+    <p class="section-label">Free Tool</p>
+    <h2>Data Maturity Scan</h2>
+    <div class="scan-cta">
+      <h3>📊 Where does your organisation stand?</h3>
+      <p>Take the Data Maturity Scan to get a quick, honest picture of your data capability — and where to focus next.</p>
+      <a href="mailto:lnunezgrance@gmail.com?subject=Data Maturity Scan" class="btn btn-primary">Request the Scan</a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOGS -->
+<section id="blogs" class="bg-mid">
+  <div class="container">
+    <p class="section-label">Writing</p>
+    <h2>Read my blogs</h2>
+    <p style="color:var(--muted);">I write when I have something worth saying — about leading in technical environments, building data capability that survives contact with reality, and the decisions I got wrong before I got them right.</p>
+    <div class="blog-grid">
+      <div class="blog-tag">Leading with empathy in technical teams</div>
+      <div class="blog-tag">Building data-driven cultures without losing agility</div>
+      <div class="blog-tag">Lessons from failed projects (and why they matter)</div>
+      <div class="blog-tag">The future of data governance in regulated industries</div>
+    </div>
+    <p style="margin-top:2rem; color:var(--muted); font-size:.9rem;">Posts are shared via LinkedIn and email — connect below to stay in the loop.</p>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section id="connect">
+  <div class="container">
+    <p class="section-label">Let's Connect</p>
+    <h2>🤙 Get in touch</h2>
+    <p style="color:var(--muted); max-width:560px;">If something here resonated — or challenged you — I'd like to hear about it. I'm particularly interested in conversations about Data &amp; AI-driven network operations, data leadership in complex organisations, and what it actually takes to build teams that last.</p>
+    <div class="connect-links">
+      <a class="connect-link" href="mailto:lnunezgrance@gmail.com">📬 lnunezgrance@gmail.com</a>
+      <a class="connect-link" href="http://stratedgic.nl/" target="_blank" rel="noopener">🌐 stratedgic.nl</a>
+      <a class="connect-link" href="http://linkedin.com/in/lilian-n%C3%BA%C3%B1ez-grance-3b289151" target="_blank" rel="noopener">🔗 LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <a href="#">StratEdgic</a> · Lilian Núñez Grance · <a href="mailto:lnunezgrance@gmail.com">lnunezgrance@gmail.com</a></p>
+</footer>
+
+</body>
+</html>
